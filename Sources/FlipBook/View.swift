@@ -61,11 +61,13 @@ extension View {
     }
     
     func fb_makeViewSnapshot() -> Image? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
-        
-        drawHierarchy(in: bounds, afterScreenUpdates: true)
-        let rasterizedView = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        DispatchQueue.global(qos: .background).async {
+            UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
+
+            drawHierarchy(in: bounds, afterScreenUpdates: false)
+            let rasterizedView = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        }
         return rasterizedView
     }
 }
