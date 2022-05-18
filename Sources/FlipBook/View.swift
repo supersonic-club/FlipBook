@@ -65,7 +65,7 @@ extension View {
         
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0)
 
-        self.drawHierarchy(in: self.bounds, afterScreenUpdates: false)
+        self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
         rasterizedView = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
